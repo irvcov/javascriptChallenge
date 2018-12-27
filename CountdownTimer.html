@@ -1,0 +1,145 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Counter</title>
+</head>
+
+<style>
+
+.outBox {
+	border:none 1px black;
+	height:120px; 
+	width:25%;
+}
+
+.innerBox {
+	border:double 1px #9E9EA7; 
+	height:90px; 
+	/*width:48% !important; */
+	margin-top: 5%; 
+	margin-left:26%; 
+	cursor:pointer;  
+	border-radius: 5%;
+}
+
+.innerBox2 {
+	margin-top: 15%; 
+    text-align: center;
+}
+
+.innerNum {
+	font-size: 20px;
+}
+
+.innerText {
+	font-size: 15px;
+	font-weight: bold;
+	color: #9E9EA7;
+}
+
+</style>
+
+<body>
+
+	<div class="container" style="margin-top: 40px;">
+	
+		<div style="margin-left: 20%; margin-right: 20%;">
+  
+			<div class="col-md-1 outBox" style="" >
+				<div class="innerBox" >
+					
+					<div class="innerBox2" >
+						<b id="day" class="innerNum" >0</b>
+						<div class="innerText">Days</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-1 outBox" style="" >
+				<div class="innerBox" >
+					
+					<div class="innerBox2" >
+						<b id="hour" class="innerNum" >0</b>
+						<div class="innerText">Hours</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-1 outBox" style="" >
+				<div class="innerBox">
+					
+					<div class="innerBox2" >
+						<b id="minute" class="innerNum" >0</b>
+						<div class="innerText">Minutes</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-1 outBox" style="" >
+				<div class="innerBox">
+					
+					<div class="innerBox2" >
+						<b id="second" class="innerNum" >0</b>
+						<div class="innerText">Seconds</div>
+					</div>
+					
+				</div>
+			</div>
+		
+		</div>
+  
+	</div>
+	
+	<div class="container" style="margin-top: 40px;">
+		
+		<div class="innerBox2" >
+					<b id="deadline" >TIME UP!, Happy New Year!!</b>
+					<br>
+					<!-- <input type="date" id="deadline"> -->
+		</div>
+  
+	</div>
+
+</body>
+
+<script>
+
+var deadline = new Date("dec 31, 2018 23:59:59").getTime();
+$("#deadline").hide(); 
+  
+var counter = setInterval(function() { 
+	var now = new Date().getTime(); 
+	var missingTime = deadline - now; 
+	var days = Math.floor(missingTime / (1000 * 60 * 60 * 24)); 
+	var hours = Math.floor((missingTime%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+	var minutes = Math.floor((missingTime % (1000 * 60 * 60)) / (1000 * 60)); 
+	var seconds = Math.floor((missingTime % (1000 * 60)) / 1000); 
+
+	$("#day").text(days);
+	$("#hour").text(hours);
+	$("#minute").text(minutes);
+	$("#second").text(seconds);
+	if (missingTime < 0) { 
+		clearInterval(counter);
+		$("#deadline").show();			
+		$("#day").text('0');
+		$("#hour").text('0');
+		$("#minute").text('0');
+		$("#second").text('0');
+	}
+}, 1000); 
+
+</script>
+
+</html>
